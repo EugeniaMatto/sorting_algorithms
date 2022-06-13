@@ -35,8 +35,10 @@ void insertion_sort_list(listint_t **list)
 
 /**
  * change_nodes - change nodes
+ * @h: doubly linked list
  * @aux: node 1
  * @prev: node 2
+ * Return: nodo prev in the new position
  */
 listint_t *change_nodes(listint_t **h, listint_t *aux, listint_t *prev)
 {
