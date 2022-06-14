@@ -21,22 +21,24 @@ void quick_sort(int *array, size_t size)
  */
 void r_quick(int *arr, int low, int high, int size)
 {
+	int pi;
+
 	if (low < high)
 	{
-		int pi = partition(arr, low, high, size);
+		pi = partition(arr, low, high, size);
 		r_quick(arr, low, pi - 1, size);
 		r_quick(arr, pi + 1, high, size);
 	}
 
 }
-
 /**
- * partition - takes last elem as pivot and places 
+ * partition - takes last elem as pivot and places
  * all smaller to left and all grater to right
  * @array: array
  * @low: index low
  * @high: index high
  * @size: size
+ * Return: pivot position
  */
 int partition(int *array, int low, int high, int size)
 {
@@ -44,7 +46,6 @@ int partition(int *array, int low, int high, int size)
 
 	for (j = low; j < high; j++)
 	{
-	
 		if (array[j] <= pivot)
 		{
 			i++;
