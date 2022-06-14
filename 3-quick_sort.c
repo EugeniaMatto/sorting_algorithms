@@ -1,4 +1,6 @@
 #include "sort.h"
+int partition(int *array, int low, int high, int size);
+void r_quick(int *arr, int low, int high, int size);
 /**
  * quick_sort - sorts an array of integers in ascending order
  * @array: array
@@ -6,29 +8,57 @@
  */
 void quick_sort(int *array, size_t size)
 {
-	int i = 0, aux, j, temp, k;
+	r_quick(array, 0, size - 1, size);
+}
 
-	if (size == 0)
-		return;
 
-	for (; i < size; i++)
+/**
+ * r_quick - sorts an array of integers recursion
+ * @arr: array
+ * @low: index low
+ * @high: index high
+ * @size: size
+ */
+void r_quick(int *arr, int low, int high, int size)
+{
+	if (low < high)
 	{
-		aux = array[i];
-		for (j = size - 1; j >= 0; j--)
+		int pi = partition(arr, low, high, size);
+		r_quick(arr, low, pi - 1, size);
+		r_quick(arr, pi + 1, high, size);
+	}
+
+}
+
+/**
+ * partition - takes last elem as pivot and places 
+ * all smaller to left and all grater to right
+ * @array: array
+ * @low: index low
+ * @high: index high
+ * @size: size
+ */
+int partition(int *array, int low, int high, int size)
+{
+	int temp, pivot = array[high], i = low - 1, j = 0;
+
+	for (j = low; j < high; j++)
+	{
+	
+		if (array[j] <= pivot)
 		{
-			if (aux > array[j])
-			{
-				array[i] = array[j];
-				array[j] = aux;
-				break;
-			}
-		}
-		for (k = i + 1; k < j; k++)
-		{
-			if (aux < array[k])
-			{
-				array
-			}
+			i++;
+			temp = array[i];
+			array[i] = array[j];
+			array[j] = temp;
+			if (array[i] != array[j])
+				print_array(array, size);
 		}
 	}
+	temp = array[i + 1];
+	array[i + 1] = array[high];
+	array[high]  = temp;
+	if (array[i + 1] != array[high])
+		print_array(array, size);
+	return (i + 1);
 }
